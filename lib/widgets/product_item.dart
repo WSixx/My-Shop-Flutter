@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/models/products.dart';
+import 'package:my_shop/models/product.dart';
 import 'package:my_shop/utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
-  final Products products;
+  final Product products;
 
   const ProductItem(this.products);
   @override
