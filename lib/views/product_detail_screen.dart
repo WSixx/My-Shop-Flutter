@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_shop/models/product.dart';
+import 'file:///E:/flutter/my_shop/lib/providers/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   @override
