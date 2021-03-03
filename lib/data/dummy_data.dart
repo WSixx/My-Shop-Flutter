@@ -1,4 +1,4 @@
-import 'file:///E:/flutter/my_shop/lib/providers/product.dart';
+import 'package:my_shop/providers/product.dart';
 
 final DUMMY_PRODUCTS = [
   Product(

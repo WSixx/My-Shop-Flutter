@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'file:///E:/flutter/my_shop/lib/providers/product.dart';
+import 'package:my_shop/providers/cart.dart';
+import 'package:my_shop/providers/product.dart';
 import 'package:my_shop/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Product products = Provider.of<Product>(context, listen: false);
+    final Product product = Provider.of<Product>(context, listen: false);
+    final Cart cart = Provider.of<Cart>(context, listen: false);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -14,11 +17,11 @@ class ProductItem extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed(
               AppRoutes.PRODUCT_DETAIL,
-              arguments: products,
+              arguments: product,
             );
           },
           child: Image.network(
-            products.imageUrl,
+            product.imageUrl,
             fit: BoxFit.cover,
           ),
         ),
@@ -27,22 +30,23 @@ class ProductItem extends StatelessWidget {
           leading: Consumer<Product>(
             builder: (ctx, product, _) => IconButton(
               icon: Icon(
-                products.isFavorite ? Icons.favorite : Icons.favorite_border,
-              ),
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
               color: Theme.of(context).accentColor,
               onPressed: () {
-                products.toggleFavorite();
+                product.toggleFavorite();
               },
             ),
           ),
           title: Text(
-            products.title,
+            product.title,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
             color: Theme.of(context).accentColor,
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product);
+            },
           ),
         ),
       ),

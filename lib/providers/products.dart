@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:my_shop/data/dummy_data.dart';
-import 'file:///E:/flutter/my_shop/lib/providers/product.dart';
+import 'package:my_shop/providers/product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = DUMMY_PRODUCTS;
 
   List<Product> get items => [..._items];
-  List<Product> get favoritesItems {
-    return _items.where((produto) => produto.isFavorite).toList();
+
+  List<Product> get favoriteItems {
+    return _items.where((prod) => prod.isFavorite).toList();
   }
 
   void addProduct(Product product) {
@@ -16,14 +17,14 @@ class Products with ChangeNotifier {
   }
 }
 
-//bool _showFavoriteOnly = false;
+// bool _showFavoriteOnly = false;
 
-/* void showFavoriteOnly() {
-    _showFavoriteOnly = true;
-    notifyListeners();
-  }
+// void showFavoriteOnly() {
+//   _showFavoriteOnly = true;
+//   notifyListeners();
 
-  void showAll() {
-    _showFavoriteOnly = false;
-    notifyListeners();
-  }*/
+// }
+// void showAll() {
+//   _showFavoriteOnly = false;
+//   notifyListeners();
+// }
