@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop/providers/cart.dart';
+import 'package:my_shop/providers/orders.dart';
 import 'package:my_shop/widgets/cart_item_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,11 @@ class CartScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<Orders>(context, listen: false)
+                          .addOrder(cart);
+                      cart.clear();
+                    },
                     child: Text('COMPRAR'),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(
