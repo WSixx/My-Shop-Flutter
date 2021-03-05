@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:my_shop/providers/product.dart';
 
 class ProductFormScreen extends StatefulWidget {
   @override
@@ -10,15 +13,13 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   final _descriptionFocusNode = FocusNode();
   final _imageFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
+  final _form = GlobalKey<FormState>();
+  final _formData = Map<String, Object>();
 
   @override
   void initState() {
     super.initState();
     _imageFocusNode.addListener(_updateImage);
-  }
-
-  void _updateImage() {
-    setState(() {});
   }
 
   @override
@@ -30,15 +31,55 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     _imageFocusNode.dispose();
   }
 
+  void _updateImage() {
+    if (isValidImageUrl(_imageUrlController.text)) {
+      setState(() {});
+    }
+  }
+
+  bool isValidImageUrl(String url) {
+    bool startWithHttp = url.toLowerCase().startsWith('http://');
+    bool startWithHttps = url.toLowerCase().startsWith('https://');
+    bool endsWithPng = url.toLowerCase().endsWith('.png');
+    bool endsWithJpg = url.toLowerCase().endsWith('.jpg');
+    bool endsWithJpeg = url.toLowerCase().endsWith('.jpeg');
+    return (startWithHttp || startWithHttps) &&
+        (endsWithJpeg || endsWithJpg || endsWithPng);
+  }
+
+  void _saveForm() {
+    bool isValid = _form.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+    _form.currentState.save();
+    final newProduct = Product(
+      id: Random().nextDouble().toString(),
+      title: _formData['title'],
+      price: _formData['price'],
+      description: _formData['description'],
+      imageUrl: _formData['imageUrl'],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Formulário Produto'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              _saveForm();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
+          key: _form,
           child: ListView(
             children: [
               TextFormField(
@@ -48,6 +89,15 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 ),
                 onFieldSubmitted: (_) =>
                     FocusScope.of(context).requestFocus(_priceFocusNode),
+                onSaved: (value) => _formData['title'] = value,
+                validator: (value) {
+                  bool emptyTitle = value.trim().isEmpty;
+                  bool invalidTitle = value.length < 3;
+                  if (emptyTitle || invalidTitle) {
+                    return 'Informe um titulo Válido';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 focusNode: _priceFocusNode,
@@ -56,6 +106,16 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 decoration: InputDecoration(
                   labelText: 'Preço',
                 ),
+                onSaved: (value) => _formData['price'] = double.parse(value),
+                validator: (value) {
+                  bool emptyPrice = value.trim().isEmpty;
+                  var newPrice = double.tryParse(value);
+                  bool invalidPrice = newPrice == null || newPrice <= 0;
+                  if (emptyPrice || invalidPrice) {
+                    return 'Informe um Valor Válido';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 maxLines: 3,
@@ -66,6 +126,15 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 ),
                 onFieldSubmitted: (_) =>
                     FocusScope.of(context).requestFocus(_descriptionFocusNode),
+                onSaved: (value) => _formData['description'] = value,
+                validator: (value) {
+                  bool emptyDescription = value.trim().isEmpty;
+                  bool invalidDescription = value.length < 10;
+                  if (emptyDescription || invalidDescription) {
+                    return 'Informe uma descrição Válida';
+                  }
+                  return null;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -77,6 +146,18 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       decoration: InputDecoration(labelText: 'URL da Imagem'),
                       keyboardType: TextInputType.url,
                       textInputAction: TextInputAction.done,
+                      onFieldSubmitted: (_) {
+                        _saveForm();
+                      },
+                      onSaved: (value) => _formData['imageUrl'] = value,
+                      validator: (value) {
+                        bool emptyUrl = value.trim().isEmpty;
+                        bool invalidUrl = !isValidImageUrl(value);
+                        if (emptyUrl || invalidUrl) {
+                          return 'Informe uma URL Válida';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
