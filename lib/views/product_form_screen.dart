@@ -25,6 +25,22 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_formData.isEmpty) {
+      final product = ModalRoute.of(context).settings.arguments as Product;
+      _formData['id'] = product.id;
+      _formData['title'] = product.title;
+      _formData['price'] = product.price;
+      _formData['description'] = product.description;
+      _formData['imageUrl'] = product.imageUrl;
+
+      _imageUrlController.text = _formData['imageUrl'];
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _priceFocusNode.dispose();
@@ -55,14 +71,20 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
       return;
     }
     _form.currentState.save();
-    final newProduct = Product(
+    final product = Product(
+      id: _formData['id'],
       title: _formData['title'],
       price: _formData['price'],
       description: _formData['description'],
       imageUrl: _formData['imageUrl'],
     );
 
-    Provider.of<Products>(context, listen: false).addProduct(newProduct);
+    final products = Provider.of<Products>(context, listen: false);
+    if (_formData['id'] == null) {
+      products.addProduct(product);
+    } else {
+      products.updateProduct(product);
+    }
     Navigator.of(context).pop();
   }
 
@@ -87,6 +109,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
           child: ListView(
             children: [
               TextFormField(
+                initialValue: _formData['title'],
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: 'Titulo',
@@ -104,6 +127,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['price'].toString(),
                 focusNode: _priceFocusNode,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -122,6 +146,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['description'],
                 maxLines: 3,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.multiline,
