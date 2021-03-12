@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_shop/exceptions/http_exception.dart';
 import 'package:my_shop/providers/product.dart';
 
 class Products with ChangeNotifier {
@@ -89,14 +90,14 @@ class Products with ChangeNotifier {
     final index = _items.indexWhere((prod) => prod.id == id);
     if (index >= 0) {
       final product = _items[index];
-
+      _items.remove(product);
+      notifyListeners();
       final response =
           await http.delete(Uri.https(_baseUrl, 'products/$id.json'));
       if (response.statusCode >= 400) {
-        print('Erro');
-      } else {
-        _items.remove(product);
+        _items.insert(index, product);
         notifyListeners();
+        throw HttpException('Occoreu um erro na exlucsão do produto');
       }
     }
   }

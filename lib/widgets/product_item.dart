@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/exceptions/http_exception.dart';
 import 'package:my_shop/providers/product.dart';
 import 'package:my_shop/providers/products.dart';
 import 'package:my_shop/utils/app_routes.dart';
@@ -10,6 +11,7 @@ class ProductItem extends StatelessWidget {
   const ProductItem(this.product);
   @override
   Widget build(BuildContext context) {
+    final scaffold = Scaffold.of(context);
     return ListTile(
       leading: CircleAvatar(
         backgroundImage: NetworkImage(product.imageUrl),
@@ -45,21 +47,32 @@ class ProductItem extends StatelessWidget {
                     actions: [
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pop(false);
                         },
                         child: Text('Não'),
                       ),
                       TextButton(
                         onPressed: () {
-                          Provider.of<Products>(context, listen: false)
-                              .deleteProduct(product.id);
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pop(true);
                         },
                         child: Text('Sim'),
                       ),
                     ],
                   ),
-                );
+                ).then((value) async {
+                  if (value) {
+                    try {
+                      await Provider.of<Products>(context, listen: false)
+                          .deleteProduct(product.id);
+                    } on HttpException catch (error) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          error.toString(),
+                        ),
+                      ));
+                    }
+                  }
+                });
               },
             ),
           ],
