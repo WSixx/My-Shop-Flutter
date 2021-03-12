@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_shop/providers/product.dart';
 
 class Products with ChangeNotifier {
-  final String _url = 'myshop-b8edb-default-rtdb.firebaseio.com';
+  final String _baseUrl = 'myshop-b8edb-default-rtdb.firebaseio.com';
 
   List<Product> _items = [];
 
@@ -19,7 +19,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> loadProducts() async {
-    final response = await http.get(Uri.https(_url, 'products.json'));
+    final response = await http.get(Uri.https(_baseUrl, 'products.json'));
     Map<String, dynamic> data = json.decode(response.body);
     _items.clear();
     if (data != null) {
@@ -40,7 +40,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product newProduct) async {
     final response = await http.post(
-      Uri.https(_url, 'products.json'),
+      Uri.https(_baseUrl, 'products.json'),
       body: json.encode(
         {
           'title': newProduct.title,
@@ -61,23 +61,43 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateProduct(Product product) {
+  Future<void> updateProduct(Product product) async {
     if (product == null || product.id == null) {
       return;
     }
 
     final index = _items.indexWhere((prod) => prod.id == product.id);
     if (index >= 0) {
+      await http.patch(
+        Uri.https(_baseUrl, 'products/${product.id}.json'),
+        body: json.encode(
+          {
+            'title': product.title,
+            'description': product.description,
+            'price': product.price,
+            'imageUrl': product.imageUrl,
+          },
+        ),
+      );
+
       _items[index] = product;
       notifyListeners();
     }
   }
 
-  void deleteProduct(String id) {
+  Future<void> deleteProduct(String id) async {
     final index = _items.indexWhere((prod) => prod.id == id);
     if (index >= 0) {
-      _items.removeWhere((prod) => prod.id == id);
-      notifyListeners();
+      final product = _items[index];
+
+      final response =
+          await http.delete(Uri.https(_baseUrl, 'products/$id.json'));
+      if (response.statusCode >= 400) {
+        print('Erro');
+      } else {
+        _items.remove(product);
+        notifyListeners();
+      }
     }
   }
 }
