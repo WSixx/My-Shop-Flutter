@@ -1,0 +1,240 @@
+[33mcommit c7d35f4aaec278c5318ec01705e104d9825bcb34[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 13:07:07 2021 -0300
+
+    .env
+
+[33mcommit 15945d99a9ae4b30960cea529936508b25d87ba7[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 13:05:10 2021 -0300
+
+    .env
+
+[33mcommit 2404988ce7fe6adeba10ad0abd223f8c1552964f[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 13:02:13 2021 -0300
+
+    .env
+
+[33mcommit 7cb6ea53889ba79c758e54088b03d9240b7e5484[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 13:01:17 2021 -0300
+
+    .env
+
+[33mcommit 3e993a1edecb06fc275590c52b64f957dff71065[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 12:59:42 2021 -0300
+
+    teste
+
+[33mcommit cc59d5a9fa02823d011c79562460eeee03e2a39a[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 12:47:24 2021 -0300
+
+    .env
+
+[33mcommit a41537122bc5d9321052442a2ba0e04d330a39ad[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 12:33:45 2021 -0300
+
+    login
+
+[33mcommit 9f8b8a856d267d3982ef0f87f7396c3cd519acf6[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 12:29:56 2021 -0300
+
+    2
+
+[33mcommit b7835ca5317763822e4907e6e4628b441bbb2a95[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 11:58:40 2021 -0300
+
+    home or auth
+
+[33mcommit 3f951910e0a7d07d941336266bfb2511f0b58f35[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Mon Mar 15 11:35:49 2021 -0300
+
+    login
+
+[33mcommit 1aed59cf973d3466015a00f070faf2774fcdbe55[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sun Mar 14 13:56:56 2021 -0300
+
+    auth screen final
+
+[33mcommit 98caa1add8591fecf612d684d7d404432d745269[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sun Mar 14 12:11:05 2021 -0300
+
+    auth screen 2
+
+[33mcommit 477b2a8584ca072c0941e1bd8a9f24849785dbd7[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sun Mar 14 11:46:33 2021 -0300
+
+    auth screen 1
+
+[33mcommit e6620b8992208f60b49c2b0fcb7d4b8b712f1503[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sat Mar 13 11:54:58 2021 -0300
+
+    http final api
+
+[33mcommit 0030747a55d741242ea5cee35b3d541c3343c937[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sat Mar 13 11:32:05 2021 -0300
+
+    orders loaded
+
+[33mcommit 79216b781c9715452c875717a48c4e5aaa048a3d[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Sat Mar 13 11:11:24 2021 -0300
+
+    orders firebase
+
+[33mcommit b1ff564f219a21395c8f31c3c5c06f0141309e02[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 12 15:22:10 2021 -0300
+
+    delete complete
+
+[33mcommit 6c5bd266023e942d25c4ef4ec82c74a6edef4ef5[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 12 14:40:44 2021 -0300
+
+    update
+
+[33mcommit 1bbf66b87b87dc9547c23b4acb918a2b9c704f66[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 12 14:13:17 2021 -0300
+
+    RefreshIndicator
+
+[33mcommit 9a8d6e32a36c89088bd4e2006c4a1d497578c5ee[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 12 13:28:33 2021 -0300
+
+    await
+
+[33mcommit 4069f5715789f1f19bfbd98da919705f47efb62e[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 11 19:00:09 2021 -0300
+
+    ProgressCircular
+
+[33mcommit 09aaffb87e048bc845155a4c09f5845e858d3549[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Wed Mar 10 16:00:28 2021 -0300
+
+    http package
+
+[33mcommit b8bde888240284e75944ed878014e94498a0fe5e[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 5 16:07:33 2021 -0300
+
+    Delete Product
+
+[33mcommit e264e6e3ced6653d72ef43fdb4dc15d06d2a527d[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 5 15:50:36 2021 -0300
+
+    Update
+
+[33mcommit a37d370d1675c33329eb339d8eb4b585c1039131[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 5 15:31:59 2021 -0300
+
+    ADD Product
+
+[33mcommit 0c347be9667deb673c559611e0a564e8e0b5424a[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Mar 5 15:23:21 2021 -0300
+
+    Validators
+
+[33mcommit 3eef83a91ce0715566bf39c18aec8775a95dbece[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 23:51:48 2021 -0300
+
+    Image-Form
+
+[33mcommit 879e73604866022f9d69a7b7e6dd137f95b19bb6[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 23:29:47 2021 -0300
+
+    Focus
+
+[33mcommit 569c20a5941dac5e552e02c34c7689f3ce1bd754[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 23:17:05 2021 -0300
+
+    Form
+
+[33mcommit 2ff95eb0aab381a4912a23dffa9da74a02fbbdc6[m
+Merge: 62bffad ad95a0f
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 22:42:38 2021 -0300
+
+    Merge branch 'main' of https://github.com/WSixx/My-Shop-Flutter
+
+[33mcommit 62bffad18942c9c6755db2c8aef5075cc8890894[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 22:42:21 2021 -0300
+
+    SnackBar
+
+[33mcommit ad95a0f3789494e1e4501b9e31540e96bc3e5e82[m
+Author: Lucas <54176892+WSixx@users.noreply.github.com>
+Date:   Thu Mar 4 15:27:22 2021 -0300
+
+    Update README.md
+
+[33mcommit 2d2d828398d760dd2c4d625653c15a6f94936006[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Thu Mar 4 15:25:38 2021 -0300
+
+    finap
+
+[33mcommit 1a1a74c480713291e6edfb9a150508589c8787d8[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Wed Mar 3 16:08:57 2021 -0300
+
+    Remove Item
+
+[33mcommit e26eb35e7c68e970a759a7428a088e23550ded7f[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Tue Mar 2 15:18:40 2021 -0300
+
+    multiPRovider
+
+[33mcommit 10c646bb51179e86837ef7e6987d2c6cacef9c92[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Tue Mar 2 14:16:27 2021 -0300
+
+    favorite
+
+[33mcommit 2157ab07304432bad939799aad7357365dad33cf[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Fri Feb 19 16:59:25 2021 -0300
+
+    provider
+
+[33mcommit 275ac482d5744c206465c6313b4bcc80c92b73a9[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Wed Feb 17 10:13:31 2021 -0300
+
+    readme update
+
+[33mcommit 6cbf670fb0d8f6c44ef7cf67fefd06c1e6a1142f[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Wed Feb 17 10:12:39 2021 -0300
+
+    readme update
+
+[33mcommit 11e416fb9e0463e0a8971c0916a6f7a68180423e[m
+Author: WSixx <lucas.2007s@gmail.com>
+Date:   Wed Feb 17 10:08:22 2021 -0300
+
+    initial
