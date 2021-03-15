@@ -5,16 +5,18 @@ import 'package:my_shop/providers/orders.dart';
 import 'package:my_shop/providers/products.dart';
 import 'package:my_shop/utils/app_routes.dart';
 import 'package:my_shop/views/auth_home_screen.dart';
-import 'package:my_shop/views/auth_screen.dart';
 import 'package:my_shop/views/cart_screen.dart';
 import 'package:my_shop/views/orders_screen.dart';
 import 'package:my_shop/views/product_detail_screen.dart';
 import 'package:my_shop/views/product_form_screen.dart';
-import 'package:my_shop/views/products_overview_screen.dart';
 import 'package:my_shop/views/products_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
-void main() => runApp(MyApp());
+void main() async {
+  await DotEnv.load(fileName: ".env");
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

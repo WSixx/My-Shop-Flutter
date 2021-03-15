@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_shop/api_key.dart';
 import 'package:my_shop/exceptions/auth_exception.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Auth with ChangeNotifier {
   String _token;
@@ -28,7 +28,7 @@ class Auth with ChangeNotifier {
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=${ApiKey.AUTH_KEY}';
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=${env['AUTH_KEY']}';
     final response = await http.post(Uri.parse(url),
         body: jsonEncode({
           'email': email,
