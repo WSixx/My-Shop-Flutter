@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,11 +7,17 @@ import 'package:my_shop/exceptions/auth_exception.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Auth with ChangeNotifier {
+  String _userId;
   String _token;
   DateTime _expiryDate;
+  Timer _logoutTimer;
 
   bool get isAuth {
     return token != null;
+  }
+
+  String get userId {
+    return isAuth ? _userId : null;
   }
 
   String get token {
@@ -45,6 +52,13 @@ class Auth with ChangeNotifier {
           seconds: int.parse(responseBody['expiresIn']),
         ),
       );
+      /*  Store.saveMap('userData', {
+        "token": _token,
+        "userId": _userId,
+        "expiryDate": _expiryDate.toIso8601String(),
+      });
+
+      _autoLogout();*/
       notifyListeners();
     }
 
