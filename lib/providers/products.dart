@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_shop/exceptions/http_exception.dart';
-import 'package:my_shop/providers/product.dart';
 import 'package:my_shop/utils/constants.dart';
+import './product.dart';
 
 class Products with ChangeNotifier {
   final String _baseUrl = '${Constants.BASE_API_URL}/products';
