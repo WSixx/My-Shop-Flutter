@@ -6,11 +6,16 @@ import 'package:my_shop/exceptions/auth_exception.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Auth with ChangeNotifier {
+  String _userId;
   String _token;
   DateTime _expiryDate;
 
   bool get isAuth {
     return token != null;
+  }
+
+  String get userId {
+    return isAuth ? _userId : null;
   }
 
   String get token {
@@ -29,22 +34,34 @@ class Auth with ChangeNotifier {
       String email, String password, String urlSegment) async {
     final url =
         'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=${env['AUTH_KEY']}';
-    final response = await http.post(Uri.parse(url),
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-          'returnSecureToken': true,
-        }));
+    final response = await http.post(
+      Uri.parse(url),
+      body: json.encode({
+        "email": email,
+        "password": password,
+        "returnSecureToken": true,
+      }),
+    );
+
     final responseBody = json.decode(response.body);
-    if (responseBody['error'] != null) {
+    if (responseBody["error"] != null) {
       throw AuthException(responseBody['error']['message']);
     } else {
-      _token = responseBody['idToken'];
+      _token = responseBody["idToken"];
+      _userId = responseBody["localId"];
       _expiryDate = DateTime.now().add(
         Duration(
-          seconds: int.parse(responseBody['expiresIn']),
+          seconds: int.parse(responseBody["expiresIn"]),
         ),
       );
+
+      /* Store.saveMap('userData', {
+        "token": _token,
+        "userId": _userId,
+        "expiryDate": _expiryDate.toIso8601String(),
+      });*/
+
+      //_autoLogout();
       notifyListeners();
     }
 
