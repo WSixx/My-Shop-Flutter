@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_shop/data/store.dart';
 import 'package:my_shop/exceptions/auth_exception.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -52,24 +53,70 @@ class Auth with ChangeNotifier {
           seconds: int.parse(responseBody['expiresIn']),
         ),
       );
-      /*  Store.saveMap('userData', {
+
+      Store.saveMap('userData', {
         "token": _token,
         "userId": _userId,
         "expiryDate": _expiryDate.toIso8601String(),
       });
 
-      _autoLogout();*/
+      _autoLogout();
       notifyListeners();
     }
 
     return Future.value();
   }
 
-  Future<void> signUp(String email, String password) async {
-    return _authenticate(email, password, 'signUp');
+  Future<void> signup(String email, String password) async {
+    return _authenticate(email, password, "signUp");
   }
 
   Future<void> login(String email, String password) async {
-    return _authenticate(email, password, 'signInWithPassword');
+    return _authenticate(email, password, "signInWithPassword");
+  }
+
+  Future<void> tryAutoLogin() async {
+    if (isAuth) {
+      return Future.value();
+    }
+
+    final userData = await Store.getMap('userData');
+    if (userData == null) {
+      return Future.value();
+    }
+
+    final expiryDate = DateTime.parse(userData["expiryDate"]);
+
+    if (expiryDate.isBefore(DateTime.now())) {
+      return Future.value();
+    }
+
+    _userId = userData["userId"];
+    _token = userData["token"];
+    _expiryDate = expiryDate;
+
+    _autoLogout();
+    notifyListeners();
+    return Future.value();
+  }
+
+  void logout() {
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
+    if (_logoutTimer != null) {
+      _logoutTimer.cancel();
+      _logoutTimer = null;
+    }
+    Store.remove('userData');
+    notifyListeners();
+  }
+
+  void _autoLogout() {
+    if (_logoutTimer != null) {
+      _logoutTimer.cancel();
+    }
+    final timeToLogout = _expiryDate.difference(DateTime.now()).inSeconds;
+    _logoutTimer = Timer(Duration(seconds: timeToLogout), logout);
   }
 }

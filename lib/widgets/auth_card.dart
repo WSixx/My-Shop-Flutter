@@ -55,7 +55,7 @@ class _AuthCardState extends State<AuthCard> {
       if (_authMode == AuthMode.Login) {
         await auth.login(_authData['email'], _authData['password']);
       } else {
-        await auth.signUp(_authData['email'], _authData['password']);
+        await auth.signup(_authData['email'], _authData['password']);
       }
       setState(() {
         _isLoading = false;
